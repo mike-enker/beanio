@@ -111,7 +111,16 @@ public class StreamBuilder extends GroupBuilderSupport<StreamBuilder> {
     }
     
     /**
-     * Adds a type handler 
+     * Adds a type handler, using class name as default name
+     * @param handler the type handler
+     * @return this
+     */
+    public StreamBuilder addTypeHandler(TypeHandler handler) {
+        return addTypeHandler(handler.getClass().getName(), null, handler);
+    }
+
+    /**
+     * Adds a type handler
      * @param name the name of the type handler
      * @param handler the type handler
      * @return this
