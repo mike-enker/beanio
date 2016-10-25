@@ -24,7 +24,7 @@ package org.beanio.types;
  * @author Kevin Seim
  * @since 1.0
  */
-public interface TypeHandler {
+public interface TypeHandler<T> {
 
     /** 
      * This constant can be returned from {@link #format(Object)} for XML formatted streams to indicate
@@ -39,7 +39,7 @@ public interface TypeHandler {
      * @return the parsed Java object
      * @throws TypeConversionException if the text cannot be parsed
      */
-    public Object parse(String text) throws TypeConversionException;
+    public T parse(String text) throws TypeConversionException;
 
     /**
      * Formats a Java object into field text.
@@ -47,12 +47,12 @@ public interface TypeHandler {
      * @return the formatted field text, or <tt>null</tt> to indicate the value is not present, 
      *   or {@link #NIL} for XML formatted streams
      */
-    public String format(Object value);
+    public String format(T value);
 
     /**
      * Returns the class type supported by this handler.  Primitive types should not be
      * returned by this method- use the object equivalent instead.
      * @return the class type supported by this handler
      */
-    public Class<?> getType();
+    public Class<T> getType();
 }

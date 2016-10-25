@@ -23,7 +23,7 @@ import java.util.UUID;
  * @author Kevin Seim
  * @since 2.0
  */
-public class UUIDTypeHandler implements TypeHandler {
+public class UUIDTypeHandler implements TypeHandler<UUID> {
 
     /**
      * Parses a UUID using {@link UUID#fromString(String)}.
@@ -31,7 +31,7 @@ public class UUIDTypeHandler implements TypeHandler {
      * @return the parsed {@link UUID} or null if <tt>text</tt>
      *   is null or an empty string
      */
-    public Object parse(String text) throws TypeConversionException {
+    public UUID parse(String text) throws TypeConversionException {
         if (text == null || "".equals(text)) {
             return null;
         }
@@ -51,7 +51,7 @@ public class UUIDTypeHandler implements TypeHandler {
      * @param value the {@link UUID} to format
      * @return the formatted text
      */
-    public String format(Object value) {
+    public String format(UUID value) {
         if (value == null)
             return null;
         else
@@ -61,7 +61,7 @@ public class UUIDTypeHandler implements TypeHandler {
     /**
      * Returns {@link UUID}.
      */
-    public Class<?> getType() {
+    public Class<UUID> getType() {
         return UUID.class;
     }
 }

@@ -270,10 +270,10 @@ public class TypeHandlerFactory {
             format = properties.getProperty("format");
         }
         if (format == null || "name".equals(format)) {
-            return new EnumTypeHandler((Class<Enum>) clazz);
+            return new EnumTypeHandler<>(clazz);
         }
         else if ("toString".equals(format)) {
-            return new ToStringEnumTypeHandler((Class<Enum>) clazz);
+            return new ToStringEnumTypeHandler(clazz);
         }
         else {
             throw new BeanIOConfigurationException("Invalid format '" + format + "', " +

@@ -22,10 +22,10 @@ import org.beanio.types.*;
  * @author Kevin Seim
  * @since 1.2
  */
-public class NillableStringTypeHandler extends StringTypeHandler implements TypeHandler {
+public class NillableStringTypeHandler extends StringTypeHandler implements TypeHandler<String> {
 
     @Override
-    public String format(Object value) {
+    public String format(String value) {
         if ("nil".equals(value)) {
             return TypeHandler.NIL;
         }

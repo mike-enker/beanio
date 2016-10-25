@@ -38,12 +38,11 @@ public class XmlTimeTypeHandler extends AbstractXmlDateTypeHandler {
     public XmlTimeTypeHandler() { }
     
     @Override
-    public String format(Object value) {
-        if (value == null) {
+    public String format(Date date) {
+        if (date == null) {
             return null;
         }
-        
-        Date date = (Date) value;
+
         if (pattern != null) {
             return super.formatDate(date);
         }

@@ -89,7 +89,7 @@ public abstract class AbstractXmlCalendarTypeHandler extends CalendarTypeHandler
      * @see org.beanio.types.TypeHandler#format(java.lang.Object)
      */
     @Override
-    public abstract String format(Object value);
+    public abstract String format(Calendar value);
 
     /**
      * Returns the expected XML Schema data type when <tt>parse</tt> is called.

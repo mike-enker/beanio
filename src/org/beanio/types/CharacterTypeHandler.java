@@ -22,7 +22,7 @@ package org.beanio.types;
  * @author Kevin Seim
  * @since 1.0
  */
-public class CharacterTypeHandler implements TypeHandler {
+public class CharacterTypeHandler implements TypeHandler<Character> {
 
     /*
      * (non-Javadoc)
@@ -43,17 +43,29 @@ public class CharacterTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#format(java.lang.Object)
      */
-    public String format(Object value) {
+    public String format(Character value) {
         if (value == null)
             return null;
         return value.toString();
+    }
+
+    public String format(String value) {
+        if (value == null)
+            return null;
+        if(value.length() == 0) {
+            return "";
+        }
+        if(value.length()>1) {
+            throw new IllegalArgumentException("Cannot convert a string to a single Character");
+        }
+        return format(value.charAt(0));
     }
 
     /*
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Character> getType() {
         return Character.class;
     }
 }

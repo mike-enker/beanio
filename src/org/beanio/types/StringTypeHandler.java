@@ -21,7 +21,7 @@ package org.beanio.types;
  * @author Kevin Seim
  * @since 1.0
  */
-public class StringTypeHandler implements TypeHandler {
+public class StringTypeHandler implements TypeHandler<String> {
 
     private boolean trim = false;
     private boolean nullIfEmpty = false;
@@ -48,17 +48,17 @@ public class StringTypeHandler implements TypeHandler {
      * @param value the value to format
      * @return the formatted value, or <tt>null</tt> if <tt>value</tt> is <tt>null</tt>
      */
-    public String format(Object value) {
+    public String format(String value) {
         if (value == null)
             return null;
-        return value.toString();
+        return value;
     }
 
     /*
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<String> getType() {
         return String.class;
     }
 

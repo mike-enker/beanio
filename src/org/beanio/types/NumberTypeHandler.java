@@ -29,7 +29,7 @@ import java.util.Properties;
  * @since 1.0
  * @see DecimalFormat
  */
-public abstract class NumberTypeHandler extends LocaleSupport implements ConfigurableTypeHandler, Cloneable {
+public abstract class NumberTypeHandler<T extends Number> extends LocaleSupport implements ConfigurableTypeHandler<T>, Cloneable {
 
     private String pattern;
     
@@ -45,7 +45,7 @@ public abstract class NumberTypeHandler extends LocaleSupport implements Configu
      *    or an empty string
      * @throws TypeConversionException if the text is not a valid number
      */
-    public final Number parse(String text) throws TypeConversionException {
+    public final T parse(String text) throws TypeConversionException {
         if (text == null || "".equals(text)) {
             return null;
         }
@@ -98,7 +98,7 @@ public abstract class NumberTypeHandler extends LocaleSupport implements Configu
      * @return the parsed <tt>Number</tt>
      * @throws NumberFormatException if the text is not a valid number
      */
-    protected abstract Number createNumber(String text) throws NumberFormatException;
+    protected abstract T createNumber(String text) throws NumberFormatException;
 
     /**
      * Parses a <tt>Number</tt> from a <tt>BigDecimal</tt>.
@@ -107,20 +107,20 @@ public abstract class NumberTypeHandler extends LocaleSupport implements Configu
      * @throws ArithmeticException if the <tt>BigDecimal</tt> cannot be converted
      *   to the <tt>Number</tt> type supported by this handler
      */
-    protected abstract Number createNumber(BigDecimal bg) throws ArithmeticException;
+    protected abstract T createNumber(BigDecimal bg) throws ArithmeticException;
     
     /*
      * (non-Javadoc)
      * @see org.beanio.types.ConfigurableTypeHandler#newInstance(java.util.Properties)
      */
-    public TypeHandler newInstance(Properties properties) throws IllegalArgumentException {
+    public TypeHandler<T> newInstance(Properties properties) throws IllegalArgumentException {
         String pattern = properties.getProperty(FORMAT_SETTING);
         if (pattern == null || "".equals(pattern)) {
             return this;
         }
         
         try {
-            NumberTypeHandler handler = (NumberTypeHandler) this.clone();
+            NumberTypeHandler<T> handler = (NumberTypeHandler<T>) this.clone();
             handler.setPattern(pattern);
             handler.format = handler.createDecimalFormat();
             handler.format.setParseBigDecimal(true);
@@ -145,11 +145,11 @@ public abstract class NumberTypeHandler extends LocaleSupport implements Configu
      * @param value the number to format
      * @return the formatted number
      */
-    public String format(Object value) {
+    public String format(T value) {
         if (value == null)
             return null;
         else if (pattern == null)
-            return ((Number) value).toString();
+            return value.toString();
         else if (format != null) 
             return format.format(value);
         else

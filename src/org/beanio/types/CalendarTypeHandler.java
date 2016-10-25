@@ -29,7 +29,7 @@ import java.util.*;
  * @see DateFormat
  * @see SimpleDateFormat
  */
-public class CalendarTypeHandler extends DateTypeHandlerSupport {
+public class CalendarTypeHandler extends DateTypeHandlerSupport<Calendar> {
 
     /**
      * Constructs a new CalendarTypeHandler.
@@ -64,8 +64,8 @@ public class CalendarTypeHandler extends DateTypeHandlerSupport {
      * (non-Javadoc)
      * @see org.beanio.types.AbstractDateTypeHandler#format(java.lang.Object)
      */
-    public String format(Object value) {
-        return formatCalendar((Calendar)value);
+    public String format(Calendar value) {
+        return formatCalendar(value);
     }
     
     protected String formatCalendar(Calendar calendar) {
@@ -76,7 +76,7 @@ public class CalendarTypeHandler extends DateTypeHandlerSupport {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Calendar> getType() {
         return Calendar.class;
     }
 }

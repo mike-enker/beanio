@@ -23,7 +23,7 @@ import java.net.*;
  * @author Kevin Seim
  * @since 2.0
  */
-public class URLTypeHandler implements TypeHandler {
+public class URLTypeHandler implements TypeHandler<URL> {
 
     /**
      * Parses a {@link URL} using its constructor {@link URL#URL(String)}.
@@ -31,7 +31,7 @@ public class URLTypeHandler implements TypeHandler {
      * @return the parsed {@link URL} or null if <tt>text</tt>
      *   is null or an empty string
      */
-    public Object parse(String text) throws TypeConversionException {
+    public URL parse(String text) throws TypeConversionException {
         if (text == null || "".equals(text)) {
             return null;
         }
@@ -51,7 +51,7 @@ public class URLTypeHandler implements TypeHandler {
      * @param value the {@link URL} to format
      * @return the formatted text
      */
-    public String format(Object value) {
+    public String format(URL value) {
         if (value == null)
             return null;
         else
@@ -61,7 +61,7 @@ public class URLTypeHandler implements TypeHandler {
     /**
      * Returns {@link URL}.
      */
-    public Class<?> getType() {
+    public Class<URL> getType() {
         return URL.class;
     }
 

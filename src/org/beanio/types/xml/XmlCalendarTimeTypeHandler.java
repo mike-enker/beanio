@@ -33,12 +33,11 @@ public class XmlCalendarTimeTypeHandler extends AbstractXmlCalendarTypeHandler {
     private boolean outputMilliseconds = false;
 
     @Override
-    public String format(Object value) {
-        if (value == null) {
+    public String format(Calendar cal) {
+        if (cal == null) {
             return null;
         }
-        
-        Calendar cal = (Calendar) value;
+
         if (pattern != null) {
             return super.formatCalendar(cal);
         }
@@ -49,8 +48,8 @@ public class XmlCalendarTimeTypeHandler extends AbstractXmlCalendarTypeHandler {
         }
         
         XMLGregorianCalendar xcal = dataTypeFactory.newXMLGregorianCalendarTime(
-            cal.get(Calendar.HOUR_OF_DAY), 
-            cal.get(Calendar.MINUTE), 
+            cal.get(Calendar.HOUR_OF_DAY),
+            cal.get(Calendar.MINUTE),
             cal.get(Calendar.SECOND),
             ms,
             getTimeZoneOffset(cal.getTime()));

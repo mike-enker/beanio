@@ -29,7 +29,7 @@ import java.util.*;
  * @see DateFormat
  * @see SimpleDateFormat
  */
-public abstract class DateTypeHandlerSupport extends LocaleSupport implements ConfigurableTypeHandler, Cloneable {
+public abstract class DateTypeHandlerSupport<T> extends LocaleSupport implements ConfigurableTypeHandler<T>, Cloneable {
 
     protected String pattern = null;
     protected boolean lenient = false;

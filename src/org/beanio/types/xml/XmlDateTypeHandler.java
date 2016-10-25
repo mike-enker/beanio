@@ -36,12 +36,11 @@ public class XmlDateTypeHandler extends AbstractXmlDateTypeHandler {
     public XmlDateTypeHandler() { }
     
     @Override
-    public String format(Object value) {
-        if (value == null) {
+    public String format(Date date) {
+        if (date == null) {
             return null;
         }
-        
-        Date date = (Date) value;
+
         if (pattern != null) {
             return super.formatDate(date);
         }
@@ -53,7 +52,7 @@ public class XmlDateTypeHandler extends AbstractXmlDateTypeHandler {
             cal.get(Calendar.YEAR), 
             cal.get(Calendar.MONTH) + 1, 
             cal.get(Calendar.DATE), 
-            getTimeZoneOffset((Date)value));
+            getTimeZoneOffset((Date)date));
         
         return xcal.toXMLFormat();
     }

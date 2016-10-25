@@ -27,7 +27,7 @@ import java.text.DecimalFormat;
  * @since 1.0
  * @see DecimalFormat
  */
-public class LongTypeHandler extends NumberTypeHandler {
+public class LongTypeHandler extends NumberTypeHandler<Long> {
 
     @Override
     protected Long createNumber(String text) throws NumberFormatException {
@@ -43,7 +43,7 @@ public class LongTypeHandler extends NumberTypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Long> getType() {
         return Long.class;
     }
 }

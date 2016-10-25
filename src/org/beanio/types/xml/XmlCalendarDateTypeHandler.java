@@ -36,20 +36,19 @@ public class XmlCalendarDateTypeHandler extends AbstractXmlCalendarTypeHandler {
     public XmlCalendarDateTypeHandler() { }
     
     @Override
-    public String format(Object value) {
-        if (value == null) {
+    public String format(Calendar cal) {
+        if (cal == null) {
             return null;
         }
-        
-        Calendar cal = (Calendar) value;
+
         if (pattern != null) {
             return super.formatCalendar(cal);
         }
         
         XMLGregorianCalendar xcal = dataTypeFactory.newXMLGregorianCalendarDate(
-            cal.get(Calendar.YEAR), 
-            cal.get(Calendar.MONTH) + 1, 
-            cal.get(Calendar.DATE), 
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH) + 1,
+            cal.get(Calendar.DATE),
             getTimeZoneOffset(cal.getTime()));
         
         return xcal.toXMLFormat();

@@ -27,7 +27,7 @@ import java.text.DecimalFormat;
  * @since 1.0
  * @see DecimalFormat
  */
-public class BigDecimalTypeHandler extends NumberTypeHandler {
+public class BigDecimalTypeHandler extends NumberTypeHandler<BigDecimal> {
 
     @Override
     protected BigDecimal createNumber(String text) throws NumberFormatException {
@@ -43,7 +43,7 @@ public class BigDecimalTypeHandler extends NumberTypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<BigDecimal> getType() {
         return BigDecimal.class;
     }
 }

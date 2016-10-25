@@ -1,8 +1,10 @@
 package org.beanio.internal.util;
 
-import java.util.*;
+import org.beanio.types.TypeConversionException;
+import org.beanio.types.TypeHandler;
 
-import org.beanio.types.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An {@link Enum} type handler that uses {@link Enum#toString()} 
@@ -12,22 +14,22 @@ import org.beanio.types.*;
  * @since 2.0.1
  */
 @SuppressWarnings({"rawtypes"})
-public class ToStringEnumTypeHandler implements TypeHandler {
+public class ToStringEnumTypeHandler<T extends Enum> implements TypeHandler<T> {
 
-    private Class<Enum> type;
-    private Map<String,Enum> map;
+    private Class<T> type;
+    private Map<String,T> map;
     
     /**
      * Constructs a new <tt>ToStringEnumTypeHandler</tt>.
      * @param type the Enum class
      */
-    public ToStringEnumTypeHandler(Class<Enum> type) {
+    public ToStringEnumTypeHandler(Class<T> type) {
         this.type = type;
         
-        map = new HashMap<String,Enum>();
+        map = new HashMap<>();
         
-        Enum[] values = type.getEnumConstants();
-        for (Enum value : values) {
+        T[] values = type.getEnumConstants();
+        for (T value : values) {
             map.put(value.toString(), value);
         }
     }
@@ -36,12 +38,12 @@ public class ToStringEnumTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#parse(java.lang.String)
      */
-    public Object parse(String text) throws TypeConversionException {
+    public T parse(String text) throws TypeConversionException {
         if (text == null || "".equals(text)) {
             return null;
         }
         
-        Enum value = map.get(text);
+        T value = map.get(text);
         if (value == null) {
             throw new TypeConversionException("Invalid " + getType().getSimpleName() + 
                 " enum value '" + text + "'");                
@@ -53,7 +55,7 @@ public class ToStringEnumTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#format(java.lang.Object)
      */
-    public String format(Object value) {
+    public String format(T value) {
         if (value == null) {
             return null;
         }
@@ -64,7 +66,7 @@ public class ToStringEnumTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<T> getType() {
         return type;
     }
 }

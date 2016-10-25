@@ -46,6 +46,6 @@ public class CharacterTypeHandlerTest {
         CharacterTypeHandler handler = new CharacterTypeHandler();
         assertEquals("V", handler.format(new Character('V')));
         assertEquals("", handler.format(""));
-        assertNull(handler.format(null));
+        assertNull(handler.format((Character) null));
     }
 }

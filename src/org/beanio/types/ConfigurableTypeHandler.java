@@ -26,7 +26,7 @@ import java.util.Properties;
  * @author Kevin Seim
  * @since 1.0
  */
-public interface ConfigurableTypeHandler extends TypeHandler {
+public interface ConfigurableTypeHandler<T> extends TypeHandler<T> {
 
     /** The field format pattern */
     public static final String FORMAT_SETTING = "format";

@@ -25,7 +25,7 @@ import org.beanio.types.*;
  * @author Kevin Seim
  * @since 1.1
  */
-public class XmlBooleanTypeHandler implements TypeHandler {
+public class XmlBooleanTypeHandler implements TypeHandler<Boolean> {
 
     private boolean numericFormatEnabled = false;
     
@@ -58,11 +58,11 @@ public class XmlBooleanTypeHandler implements TypeHandler {
      * Returns {@link Boolean#toString()}, or <tt>null</tt> if <tt>value</tt>
      * is <tt>null</tt>.
      */
-    public String format(Object value) {
+    public String format(Boolean value) {
         if (value == null)
             return null;
         
-        boolean b = ((Boolean)value).booleanValue();
+        boolean b = value;
         if (isNumericFormatEnabled()) {
             return b ? "1" : "0";
         }
@@ -75,7 +75,7 @@ public class XmlBooleanTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Boolean> getType() {
         return Boolean.class;
     }
 

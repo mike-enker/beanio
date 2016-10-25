@@ -267,7 +267,7 @@ public class FixedLengthParserTest extends ParserTest {
         out.write("record1", map);
         
         map.clear();
-        map.put("number", 5);
+        map.put("number", String.valueOf(5));
         out.write("record2", map);
         
         out.flush();

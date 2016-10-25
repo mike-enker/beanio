@@ -25,7 +25,7 @@ import java.math.BigDecimal;
  * @author Kevin Seim
  * @since 1.0
  */
-public class FloatTypeHandler extends NumberTypeHandler {
+public class FloatTypeHandler extends NumberTypeHandler<Float> {
 
     @Override
     protected Float createNumber(String text) throws NumberFormatException {
@@ -41,7 +41,7 @@ public class FloatTypeHandler extends NumberTypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Float> getType() {
         return Float.class;
     }
 }

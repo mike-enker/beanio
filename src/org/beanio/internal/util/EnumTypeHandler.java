@@ -10,15 +10,15 @@ import org.beanio.types.*;
  * @since 2.0.1
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class EnumTypeHandler implements TypeHandler {
+public class EnumTypeHandler<T extends Enum> implements TypeHandler<T> {
 
-    private Class<Enum> type;
+    private Class<T> type;
     
     /**
      * Constructs a new <tt>EnumTypeHandler</tt>.
      * @param type the Enum class
      */
-    public EnumTypeHandler(Class<Enum> type) {
+    public EnumTypeHandler(Class<T> type) {
         this.type = type;
     }
     
@@ -26,12 +26,12 @@ public class EnumTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#parse(java.lang.String)
      */
-    public Object parse(String text) throws TypeConversionException {
+    public T parse(String text) throws TypeConversionException {
         if (text == null || "".equals(text)) {
             return null;
         }
         try {
-            return Enum.valueOf(type, text);
+            return (T) Enum.valueOf(type, text);
         }
         catch (IllegalArgumentException ex) {
             throw new TypeConversionException("Invalid " + getType().getSimpleName() + 
@@ -43,18 +43,18 @@ public class EnumTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#format(java.lang.Object)
      */
-    public String format(Object value) {
+    public String format(T value) {
         if (value == null) {
             return null;
         }
-        return ((Enum)value).name();
+        return value.name();
     }
 
     /*
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<T> getType() {
         return type;
     }
 }

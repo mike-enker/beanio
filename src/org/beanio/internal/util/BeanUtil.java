@@ -171,7 +171,7 @@ public class BeanUtil {
      * Type handler implementation for allowing escaped line feeds, carriage returns,
      * tabs and form feeds using a backslash character.
      */
-    private static class EscapedCharacterTypeHandler implements TypeHandler {
+    private static class EscapedCharacterTypeHandler implements TypeHandler<Character> {
 
         /*
          * (non-Javadoc)
@@ -211,7 +211,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#format(java.lang.Object)
          */
-        public String format(Object value) {
+        public String format(Character value) {
             throw new UnsupportedOperationException();
         }
 
@@ -219,7 +219,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#getType()
          */
-        public Class<?> getType() {
+        public Class<Character> getType() {
             return Character.class;
         }
     }
@@ -228,7 +228,7 @@ public class BeanUtil {
      * Type handler implementation for allowing escaped line feeds, carriage returns,
      * tabs and form feeds using a backslash character.
      */
-    private static class EscapedStringTypeHandler implements TypeHandler {
+    private static class EscapedStringTypeHandler implements TypeHandler<String> {
 
         /*
          * (non-Javadoc)
@@ -295,7 +295,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#format(java.lang.Object)
          */
-        public String format(Object value) {
+        public String format(String value) {
             throw new UnsupportedOperationException();
         }
 
@@ -303,7 +303,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#getType()
          */
-        public Class<?> getType() {
+        public Class<String> getType() {
             return String.class;
         }
     }
@@ -312,7 +312,7 @@ public class BeanUtil {
      * Type handler implementation for String arrays.  Values must be comma delimited,
      * and a comma can be escaped using a backslash.  All whitespace is preserved.
      */
-    private static class StringArrayTypeHandler implements TypeHandler {
+    private static class StringArrayTypeHandler implements TypeHandler<String[]> {
         
         /*
          * (non-Javadoc)
@@ -360,7 +360,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#format(java.lang.Object)
          */
-        public String format(Object value) {
+        public String format(String[] value) {
             throw new UnsupportedOperationException();
         }
 
@@ -368,7 +368,7 @@ public class BeanUtil {
          * (non-Javadoc)
          * @see org.beanio.types.TypeHandler#getType()
          */
-        public Class<?> getType() {
+        public Class<String[]> getType() {
             return String[].class;
         }
     }

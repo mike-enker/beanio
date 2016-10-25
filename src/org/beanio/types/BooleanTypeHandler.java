@@ -22,7 +22,7 @@ package org.beanio.types;
  * @author Kevin Seim
  * @since 1.0
  */
-public class BooleanTypeHandler implements TypeHandler {
+public class BooleanTypeHandler implements TypeHandler<Boolean> {
 
     /**
      * Parses a Boolean object from the given text.
@@ -40,7 +40,7 @@ public class BooleanTypeHandler implements TypeHandler {
      * Returns {@link Boolean#toString()}, or <tt>null</tt> if <tt>value</tt>
      * is <tt>null</tt>.
      */
-    public String format(Object value) {
+    public String format(Boolean value) {
         if (value == null)
             return null;
         return value.toString();
@@ -50,7 +50,7 @@ public class BooleanTypeHandler implements TypeHandler {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Boolean> getType() {
         return Boolean.class;
     }
 }

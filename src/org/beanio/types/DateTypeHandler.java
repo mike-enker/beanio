@@ -29,7 +29,7 @@ import java.util.*;
  * @see DateFormat
  * @see SimpleDateFormat
  */
-public class DateTypeHandler extends DateTypeHandlerSupport {
+public class DateTypeHandler extends DateTypeHandlerSupport<Date> {
 
     /**
      * Constructs a new <tt>DateTypeHandler</tt>.
@@ -56,15 +56,15 @@ public class DateTypeHandler extends DateTypeHandlerSupport {
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#format(java.lang.Object)
      */
-    public String format(Object value) {
-        return super.formatDate((Date)value);
+    public String format(Date value) {
+        return super.formatDate(value);
     }
     
     /*
      * (non-Javadoc)
      * @see org.beanio.types.TypeHandler#getType()
      */
-    public Class<?> getType() {
+    public Class<Date> getType() {
         return Date.class;
     }
 }
