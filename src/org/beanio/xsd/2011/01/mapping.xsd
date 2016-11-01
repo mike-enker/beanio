@@ -82,14 +82,14 @@
   
   <complexType name="Stream">
     <sequence>
-      <element name="reader" minOccurs="0" maxOccurs="1" type="tns:Factory">
+      <element name="reader" minOccurs="0" maxOccurs="1" type="tns:FactoryType">
         <annotation>
           <documentation>
             Declares a custom record reader factory or customizes the default one.
           </documentation>
         </annotation>
       </element>
-      <element name="writer" minOccurs="0" maxOccurs="1" type="tns:Factory">
+      <element name="writer" minOccurs="0" maxOccurs="1" type="tns:FactoryType">
         <annotation>
           <documentation>
             Declares a custom record writer factory or customizes the default one.
@@ -256,7 +256,7 @@
     </attribute>
   </complexType>
 
-  <complexType name="Factory">
+  <complexType name="FactoryType">
     <sequence>
       <element name="property" minOccurs="0" maxOccurs="unbounded" type="tns:Property">
         <annotation>

@@ -88,7 +88,7 @@
   
   <complexType name="Stream">
     <sequence>
-      <element name="parser" minOccurs="0" maxOccurs="1" type="tns:Factory">
+      <element name="parser" minOccurs="0" maxOccurs="1" type="tns:FactoryType">
         <annotation>
           <documentation>
             Declares format specific parser settings, or overrides the default RecordParserFactory.
@@ -269,7 +269,7 @@
     </attribute>
   </complexType>
 
-  <complexType name="Factory">
+  <complexType name="FactoryType">
     <sequence>
       <element name="property" minOccurs="0" maxOccurs="unbounded" type="tns:Property">
         <annotation>
